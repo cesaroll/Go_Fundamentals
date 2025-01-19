@@ -1,9 +1,12 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	for i := 0; i < 3; i++ {
-		println(i)
+		fmt.Println(i)
 	}
 
+	fmt.Println("Done!")
 }
