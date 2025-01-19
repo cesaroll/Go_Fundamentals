@@ -5,12 +5,12 @@ import (
 	"strconv"
 )
 
-func main() {
+type Score struct {
+	Name	string
+	Score	int
+}
 
-	type Score struct {
-		Name	string
-		Score	int
-	}
+func main() {
 
 	scores := []Score{}
 	shouldContinue := true
@@ -23,21 +23,13 @@ func main() {
 
 		switch option {
 			case "e":
-				fmt.Print("\nEnter student name and score: ")
-				var name, rawScore string
-				fmt.Scanln(&name, &rawScore)
-				score, err := strconv.Atoi(rawScore)
-				if err != nil {
-					fmt.Println("Invalid score")
-					continue
+				score, ok := addScore()
+				if ok {
+					scores = append(scores, score)
 				}
-				scores = append(scores, Score{Name: name, Score: score})
 
 			case "p":
-				fmt.Println()
-				for _, score := range scores {
-					fmt.Println(score.Name, " - ", score.Score)
-				}
+				print(scores)
 
 			case "q":
 				shouldContinue = false
@@ -45,5 +37,25 @@ func main() {
 				shouldContinue = false
 		}
 		fmt.Println()
+	}
+}
+
+func addScore() (score Score, ok bool){
+	fmt.Print("\nEnter student name and score: ")
+	var name, rawScore string
+	fmt.Scanln(&name, &rawScore)
+	s, err := strconv.Atoi(rawScore)
+	if err != nil {
+		fmt.Println("Invalid score")
+		return Score{}, false
+	}
+
+	return Score{Name: name, Score: s}, true
+}
+
+func print(scores []Score) {
+	fmt.Println()
+	for _, score := range scores {
+		fmt.Println(score.Name, " - ", score.Score)
 	}
 }
