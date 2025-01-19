@@ -19,6 +19,7 @@ func main() {
 		{Name: "Cesar", Score: 99},
 		{"Denise", 98},
 		{"Jocelyn", 97},
+		{"Mena", 96},
 	}
 
 	for idx, score := range scores{
