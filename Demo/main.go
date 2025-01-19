@@ -21,6 +21,7 @@ func main() {
 	}
 
 	for _, score := range scores{
-		fmt.Printf("%s %d\n", score.Name, score.Score)
+		fmt.Println(score.Name, score.Score)
+		// fmt.Printf("%s %d\n", score.Name, score.Score)
 	}
 }
