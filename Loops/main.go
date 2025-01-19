@@ -1,12 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 
-	for i := 0; i < 3; i++ {
-		fmt.Println(i)
+	type Score struct {
+		Name	string
+		Score	int
 	}
 
-	fmt.Println("Done!")
+	scores := []Score{}
+
+	for {
+		fmt.Print("Enter student name and score: ")
+		var name, rawScore string
+		fmt.Scanln(&name, &rawScore)
+		score, err := strconv.Atoi(rawScore)
+		if err != nil {
+			fmt.Println("Invalid score")
+			continue
+		}
+		fmt.Println(name, score)
+		scores = append(scores, Score{Name: name, Score: score})
+	}
+
 }
